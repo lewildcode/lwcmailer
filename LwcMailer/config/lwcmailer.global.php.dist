@@ -1,0 +1,22 @@
+<?php
+
+return array(
+    'lwcmailer' => array(
+        'defaultFrom' => 'webmailer@example.com',
+        'defaultFromName' => 'My web app',
+        'recipients' => array(
+            'info@example.com' => 'LwcMailer Inc'
+        ),
+        'transport' => 'smtp', // or: "sendmail", "file"
+        'transportOptions' => array(
+            'port' => 25,
+            'host' => 'example.com',
+            'connection_class'  => 'login',
+            'connection_config' => array(
+                'ssl' => 'tls',
+                'username' => 'me@example.com',
+                'password' => 'password'
+            )
+        )
+    ),
+);
