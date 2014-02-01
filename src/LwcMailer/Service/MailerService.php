@@ -3,6 +3,8 @@
 namespace LwcMailer\Service;
 
 use Zend\Mail\Message;
+use Zend\Mime\Part as MimePart;
+use Zend\Mime\Message as MimeMessage;
 
 class MailerService
 {
@@ -39,9 +41,12 @@ class MailerService
 
     /**
      * @param string $subject
+     * @param string $textContent
+     * @param string $html
+     * @throws \RuntimeException
      * @return \Zend\Mail\Message
      */
-    public function createMail ($subject, $body)
+    public function createMail ($subject, $textContent, $html = null)
     {
         $options = $this->getOptions();
 
@@ -51,13 +56,29 @@ class MailerService
         $mail = new Message();
         $mail->setEncoding($options->getEncoding())
              ->setSubject($subject)
-             ->setBody($body)
              ->setFrom($options->getDefaultFrom(), $options->getDefaultFromName());
 
+        // add recipients
         foreach($options->getRecipients() as $email => $name) {
             $mail->addTo($email, $name);
         }
-        return $mail;
+
+        // add mime parts
+        $body = new MimeMessage();
+
+        // plaintext
+        $text = new MimePart($textContent);
+        $text->type = "text/plain";
+        $body->addPart($text);
+
+        // do we have html?
+        if($html !== null) {
+            $html = new MimePart($html);
+            $html->type = "text/html";
+            $body->addPart($html);
+        }
+
+        return $mail->setBody($body);
     }
 
     /**
