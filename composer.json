@@ -1,0 +1,12 @@
+{
+	"name" : "lwc/lwcmailer",
+	"description" : "ZF2 module for sending mails.",
+	"authors" : [{
+			"name" : "Timo Ziemann",
+			"email" : "info@mehrweb.de",
+			"homepage" : "http://www.mehrweb.de"
+		}
+	],
+	"keywords" : [
+	]
+}
