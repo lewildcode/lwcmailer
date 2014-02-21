@@ -1,12 +1,19 @@
 {
-	"name" : "lwc/lwcmailer",
-	"description" : "ZF2 module for sending mails.",
-	"authors" : [{
-			"name" : "Timo Ziemann",
-			"email" : "info@mehrweb.de",
-			"homepage" : "http://www.mehrweb.de"
-		}
-	],
-	"keywords" : [
-	]
+    "name" : "lwc/lwcmailer",
+    "description" : "ZF2 module for sending mails.",
+    "authors" : [{
+        "name" : "Timo Ziemann",
+        "email" : "info@mehrweb.de",
+        "homepage" : "http://www.mehrweb.de"
+    }],
+    "keywords" : [
+    ],
+    "autoload": {
+        "psr-0": {
+            "LwcMailer": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
 }
